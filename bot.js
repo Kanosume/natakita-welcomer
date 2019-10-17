@@ -2,13 +2,16 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const prefix = "ntkt-";
 const footer = "Natakita Official Discord"
+const kanosumeDev = {
+    guildID: '517272790659891202',
+    memberCountID: '616971400384741405'
+}
 
 client.login(process.env.ntkt);
 client.on("ready", () => {
     console.log('-------------------------[NTKT Verstion 109.140495]-------------------------')
     console.log('Run On Test Beta')
     client.user.setStatus('dnd')
-    client.user.setGame('Natakita Welcome')
 })
 
 client.on("guildMemberAdd", function(message) {
@@ -42,10 +45,6 @@ client.on("guildMemberRemove", function(message) {
 
     member.guild.channels.find(`name`, `ประวัติเข้าออก`).send({ embed: embed });
 })
-const kanosumeDev = {
-    guildID: '517272790659891202',
-    memberCountID: '616971400384741405'
-}
 
 client.on('guildMemberAdd', member => {
     if (member.guild.id !== kanosumeDev.guildID) return
