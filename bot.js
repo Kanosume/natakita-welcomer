@@ -42,3 +42,16 @@ client.on("guildMemberRemove", function(message) {
 
     member.guild.channels.find(`name`, `ประวัติเข้าออก`).send({ embed: embed });
 })
+const kanosumeDev = {
+    guildID: '517272790659891202',
+    memberCountID: '616971400384741405'
+}
+
+client.on('guildMemberAdd', member => {
+    if (member.guild.id !== kanosumeDev.guildID) return
+    client.channels.get(kanosumeDev.memberCountID).setName(`จำนวนผู้ใช้ทั้งหมด : ${member.guild.members.filter(m => !m.user.bot).size}`)
+})
+client.on('guildMemberRemove', member => {
+    if (member.guild.id !== kanosumeDev.guildID) return
+    client.channels.get(kanosumeDev.memberCountID).setName(`จำนวนผู้ใช้ทั้งหมด : ${member.guild.members.filter(m => !m.user.bot).size}`)
+})
