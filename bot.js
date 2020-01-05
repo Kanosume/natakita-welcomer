@@ -54,3 +54,16 @@ client.on('guildMemberRemove', member => {
     if (member.guild.id !== kanosumeDev.guildID) return
     client.channels.get(kanosumeDev.memberCountID).setName(`จำนวนผู้ใช้ทั้งหมด : ${member.guild.members.filter(m => !m.user.bot).size}`)
 })
+
+client.on("message", function(message) {
+  let member = message;
+  const embed = new Discord.RichEmbed()
+  .setColor('#ff0000')
+  .setAuthor('Natakita Discord Invite Prevent!', 'https://cdn.discordapp.com/attachments/581353116264431616/663352508789555211/FB_IMG_1578225946960.jpg')
+  .setDescription("<@" + member.author.id + "> **( " + member.author.tag + " )** กรุณาอย่าส่งคำเชิญ Discord นะครับ")
+  .setTimestamp()
+  if(["https://discord.gg/" , "https://discordapp.com/invite/" , "discordapp.com/invite/" , ".gg/"].some(word => message.content.toLowerCase().includes(word))){
+    message.delete()
+    message.channel.send({ embed: embed });
+    message.author.send({ embed: embed });
+  }})
